@@ -1,2 +1,6 @@
 # Champlain Capstone-Repo
-* Automated network recon and v-scan bash script
+## Bash scripting for security analysis automation
+* Automated network recon and V-scan
+* Use open source tools
+  * Nmap
+  * Metasploit
