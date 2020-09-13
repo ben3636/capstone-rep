@@ -11,7 +11,7 @@
 * I was drawn to this idea because it is mostly automated and allows standard users to get crucial security reporting without either paying for specialized software or dealing with extremely confusing UI's such as that of OpenVAS
 * This is meant to be a periodic check to see if there are any blaring security issues that allow an attacker to gain a shell on a local box
 
-![alt text](https://github.com/ben3636/capstone-repo/blob/master/Mindmup.png?raw=true)
+![alt text](https://github.com/ben3636/capstone-repo/blob/master/Mindmup_color.png?raw=true)
 
 ### Outline
 * Kali Linux or Similar Distro
