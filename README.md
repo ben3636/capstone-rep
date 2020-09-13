@@ -16,3 +16,32 @@
 ### Background
 * I was drawn to this idea after playing around with SE-Toolkit
 * While some of the SE attacks require a bit of technical knowledge, this script would allow a user to simply launch the script and perform a series of SE attacks
+
+
+
+
+
+
+* Kali Linux or Similar Distro
+	* Master Script (Main.bash)
+
+		Main bash script that just calls the internal modules in order for scheduled automation
+		* Initialize/Update Module
+
+			Updates the OS and Ensures all module dependencies are installed/updated
+		* Recon Module
+
+			Scans the selected subnet and exports a lists of "live" hosts for the next module
+		* Vulnerability Analysis Module
+
+			Scans the hosts from the previous modules for known CVE's using Nmap's scripting engine (NSE)
+		* Exploit Module
+
+			Parses the results of the v-scan and attempts to gain shells on targets with exploits
+		* Report Module
+
+			Places user-readable reports from all NSE scans in a directory for admin use
+			* HTML Reports
+				* Web Interface & Directory Listing
+
+					Potentially used for remote access to the results directory
