@@ -26,4 +26,14 @@ together against each host on the network but they can also be used individually
 ### NOTES
 * The setup script is optional. It updates the system and installs OpenVAS. If the Nmap NSE's encounter errors, you may need to use it.
 * If you want to be more thorough, run the script and then follow up with OpenVAS and Armitage
-
+## OpenVAS Guide
+* Login with the auto generated password shown after the install (username admin)
+* Change password
+* Click on scans in menu bar
+ * Click on task wizard
+ * Add targets
+ * Select scan type
+ * Click save
+* Run scan to create and browse reports/results
+* Customize dashboard under dashboard tab to show a bird's eye view of results and hosts
+ 
