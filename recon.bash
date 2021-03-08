@@ -1,7 +1,17 @@
 #!/bin/bash
+function load(){
+        for i in range {1..5}
+        do
+                echo "."
+                echo
+                sleep .02
+        done
+}
 echo "" > target.txt
 echo "" > hosts
-
+clear
+cat welcome.txt
+load
 ###---Determine IP & Subnet---###
 ip=$(ip a | grep -o ".*\.*\.*\/.. " | grep -v inet6)
 subnet_part1=$(ip a | grep -o ".*\.*\.*\/.. " | grep -v inet6 | sed -e s/'inet'// -e s/" "// | awk -F '.' ' { print $1"."$2"."$3"." } ' | awk ' { print $1 } ')
@@ -12,7 +22,7 @@ subnet=$subnet_part1$subnet_part2$mask
 ###---Scan Subnet for Hosts---###
 echo "Scanning Subnet..."
 echo
-#nmap $subnet -T5 -oG scan_results
+nmap $subnet -T5 -oG scan_results
 hosts=$(cat scan_results | grep "Status: Up" | awk ' { print $2 } ')
 counter=1
 for i in $hosts
