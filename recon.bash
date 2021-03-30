@@ -22,7 +22,7 @@ subnet=$subnet_part1$subnet_part2$mask
 ###---Scan Subnet for Hosts---###
 echo "Scanning Subnet..."
 echo
-nmap $subnet -T5 -oG scan_results
+sudo nmap -sn $subnet -T5 -oG scan_results #Elevate privileges to allow ping scan to utilize ARP instead of ICMP, see -sn flag here: https://nmap.org/book/man-host-discovery.html
 hosts=$(cat scan_results | grep "Status: Up" | awk ' { print $2 } ')
 counter=1
 for i in $hosts
