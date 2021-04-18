@@ -7,7 +7,7 @@ function load(){
                 sleep .02
         done
 }
-echo "" > target.txt
+echo "" > target-list.txt
 echo "" > hosts
 clear
 cat welcome.txt
@@ -54,7 +54,7 @@ do
         echo -n "Which hosts would you like to scan? "
         read choice
         chosen_host=$(cat hosts | grep ^$choice | awk ' { print $2 } ')
-        echo $chosen_host >> target.txt
+        echo $chosen_host >> target-list.txt
         echo -n "Would you like to add another host? y/n "
         read cont
         if [[ $cont != "y" ]]
@@ -67,4 +67,4 @@ done
 load
 echo "Targets"
 echo
-cat target.txt
+cat target-list.txt
