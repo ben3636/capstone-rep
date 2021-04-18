@@ -8,7 +8,7 @@ function load(){
                 sleep .05
         done
 }
-
+function main(){
 ###------------------------------READ // COLLECT TARGET IP ADDRESS------------------------------###
 clear
 target=$(cat target.txt)
@@ -29,12 +29,12 @@ then
 echo "No existing nmap vulnerability scan file present"
 echo "Initiating scan..."
 load
-nmap $target -T5 -A -sV -oX nmap-vuln-$target.xml --script=vuln
+nmap $target -T5 -Pn -A -sV -oX nmap-vuln-$target.xml --script=vuln
 load
 else
         echo "Existing nmap vulnerability xml scan report found, would you like to continue or rescan?"
         echo -n "[C]ontinue or [R]escan: "
-        read choice
+        read choice </dev/tty
         case $choice in
                 [Cc] )
                         echo
@@ -43,7 +43,7 @@ else
 			;;
                 [Rr] )
                         rm nmap-vuln-$target.xml
-                        nmap $target -T5 -A -sV -oX nmap-vuln-$target.xml --script=vuln
+                        nmap $target -T5 -Pn -A -sV -oX nmap-vuln-$target.xml --script=vuln
 			load
 			;;
 esac
@@ -58,12 +58,12 @@ then
 echo "No existing nmap malware scan file present"
 echo "Initiating scan..."
 load
-nmap $target -T5 -A -sV -oX nmap-mal-$target.xml --script=malware
+nmap $target -T5 -A -Pn -sV -oX nmap-mal-$target.xml --script=malware
 load
 else
         echo "Existing nmap malware xml scan report found, would you like to continue or rescan?"
         echo -n "[C]ontinue or [R]escan: "
-        read choice
+        read choice </dev/tty
         case $choice in
                 [Cc] )
                         echo
@@ -72,7 +72,7 @@ else
                         ;;
                 [Rr] )
                         rm nmap-mal-$target.xml
-                        nmap $target -T5 -A -sV -oX nmap-mal-$target.xml --script=malware
+                        nmap $target -T5 -Pn -A -sV -oX nmap-mal-$target.xml --script=malware
 			load
                         ;;
 esac
@@ -82,3 +82,10 @@ fi
 xsltproc nmap-mal-$target.xml -o nmap-malware-$target.html
 
 echo "VULNERABILITY ANALYSIS OF $target COMPLETE"
+}
+cat target-list.txt | sed '/^$/d' | while read line;
+do
+        echo "Running exploit module for: $line"
+        echo $line > target.txt
+        main
+done
